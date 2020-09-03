@@ -3,6 +3,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text.Json.Serialization;
 using CorrelationId;
+using FluentValidation.AspNetCore;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
@@ -30,6 +31,9 @@ namespace TestWebApplication
 
             services
                 .AddControllers()
+                .AddFluentValidation(x => x
+                    .RegisterValidatorsFromAssemblyContaining(typeof(IViewModel))
+                    .RunDefaultMvcValidationAfterFluentValidationExecutes = true)
                 .AddJsonOptions(options =>
                 {
                     options.JsonSerializerOptions.IgnoreNullValues = true;
