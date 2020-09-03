@@ -37,7 +37,7 @@ namespace TestWebApplication.Controllers.Base
         [SwaggerResponse(StatusCodes.Status200OK)]
         [SwaggerResponse(StatusCodes.Status404NotFound, Type = typeof(string))]
         [SwaggerResponse(StatusCodes.Status400BadRequest, Type = typeof(string))]
-        public async Task<ActionResult<TKeyFieldsResponse>> GetAsync([FromQuery] PagedRequest request)
+        public virtual async Task<ActionResult<TKeyFieldsResponse>> GetAsync([FromQuery] PagedRequest request)
         {
             if (!ModelState.IsValid)
             {
@@ -59,7 +59,7 @@ namespace TestWebApplication.Controllers.Base
         [SwaggerResponse(StatusCodes.Status200OK)]
         [SwaggerResponse(StatusCodes.Status404NotFound, Type = typeof(string))]
         [SwaggerResponse(StatusCodes.Status400BadRequest, Type = typeof(string))]
-        public async Task<ActionResult<TKeyFieldsResponse>> GetByIdAsync([FromRoute] Guid id)
+        public virtual async Task<ActionResult<TKeyFieldsResponse>> GetByIdAsync([FromRoute] Guid id)
         {
             if (id == Guid.Empty)
             {
@@ -85,7 +85,7 @@ namespace TestWebApplication.Controllers.Base
         [HttpPost]
         [SwaggerResponse(StatusCodes.Status201Created)]
         [SwaggerResponse(StatusCodes.Status400BadRequest, Type = typeof(string))]
-        public async Task<IActionResult> CreateAsync([FromBody] TFieldsRequest request)
+        public virtual async Task<IActionResult> CreateAsync([FromBody] TFieldsRequest request)
         {
             if (!ModelState.IsValid)
             {
@@ -111,7 +111,7 @@ namespace TestWebApplication.Controllers.Base
         [HttpPut("{id:Guid}")]
         [SwaggerResponse(StatusCodes.Status204NoContent)]
         [SwaggerResponse(StatusCodes.Status400BadRequest, Type = typeof(string))]
-        public async Task<IActionResult> UpdateAsync([FromRoute] Guid id, [FromBody] TFieldsRequest request)
+        public virtual async Task<IActionResult> UpdateAsync([FromRoute] Guid id, [FromBody] TFieldsRequest request)
         {
             if (id == Guid.Empty)
             {
@@ -141,7 +141,7 @@ namespace TestWebApplication.Controllers.Base
         [HttpDelete("{id:Guid}")]
         [SwaggerResponse(StatusCodes.Status204NoContent)]
         [SwaggerResponse(StatusCodes.Status400BadRequest, Type = typeof(string))]
-        public async Task<IActionResult> DeleteAsync([FromRoute] Guid id)
+        public virtual async Task<IActionResult> DeleteAsync([FromRoute] Guid id)
         {
             if (id == Guid.Empty)
             {
